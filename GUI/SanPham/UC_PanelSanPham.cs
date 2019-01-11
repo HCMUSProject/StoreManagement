@@ -14,8 +14,6 @@ namespace GUI.SanPham
     {
         private static UC_PanelSanPham _ins;
 
-        bool IsLoaded = false;
-
         public static UC_PanelSanPham Instance
         {
             get
@@ -35,15 +33,13 @@ namespace GUI.SanPham
             // mặc định load trang sản phẩm
             BtnProduct.PerformClick();
 
-            IsLoaded = true;
         }
 
         public void ReLoad()
         {
-            if (IsLoaded == true)
-            {
-                PanelContent.Controls.Clear();
-            }
+            PanelContent.Controls.Clear();
+
+            BtnProduct.PerformClick();
         }
 
         private void BtnProduct_Click(object sender, EventArgs e)

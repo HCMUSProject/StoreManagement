@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.PanelButton = new System.Windows.Forms.Panel();
+            this.BtnSale = new System.Windows.Forms.Button();
             this.BtnHome = new System.Windows.Forms.Button();
             this.BtnProducts = new System.Windows.Forms.Button();
             this.BtnReport = new System.Windows.Forms.Button();
@@ -48,6 +49,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.PanelButton.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.PanelButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelButton.Controls.Add(this.BtnSale);
             this.PanelButton.Controls.Add(this.BtnHome);
             this.PanelButton.Controls.Add(this.BtnProducts);
             this.PanelButton.Controls.Add(this.BtnReport);
@@ -55,6 +57,27 @@
             this.PanelButton.Name = "PanelButton";
             this.PanelButton.Size = new System.Drawing.Size(70, 820);
             this.PanelButton.TabIndex = 2;
+            // 
+            // BtnSale
+            // 
+            this.BtnSale.FlatAppearance.BorderSize = 0;
+            this.BtnSale.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray;
+            this.BtnSale.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
+            this.BtnSale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSale.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSale.ForeColor = System.Drawing.Color.Black;
+            this.BtnSale.Image = global::GUI.Properties.Resources.icons8_bill_36;
+            this.BtnSale.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnSale.Location = new System.Drawing.Point(1, 264);
+            this.BtnSale.MinimumSize = new System.Drawing.Size(200, 60);
+            this.BtnSale.Name = "BtnSale";
+            this.BtnSale.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.BtnSale.Size = new System.Drawing.Size(200, 60);
+            this.BtnSale.TabIndex = 4;
+            this.BtnSale.Text = "Bán hàng";
+            this.BtnSale.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnSale.UseVisualStyleBackColor = true;
+            this.BtnSale.Click += new System.EventHandler(this.BtnSale_Click);
             // 
             // BtnHome
             // 
@@ -87,7 +110,7 @@
             this.BtnProducts.ForeColor = System.Drawing.Color.Black;
             this.BtnProducts.Image = ((System.Drawing.Image)(resources.GetObject("BtnProducts.Image")));
             this.BtnProducts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnProducts.Location = new System.Drawing.Point(1, 182);
+            this.BtnProducts.Location = new System.Drawing.Point(1, 175);
             this.BtnProducts.MinimumSize = new System.Drawing.Size(200, 60);
             this.BtnProducts.Name = "BtnProducts";
             this.BtnProducts.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
@@ -108,7 +131,7 @@
             this.BtnReport.ForeColor = System.Drawing.Color.Black;
             this.BtnReport.Image = ((System.Drawing.Image)(resources.GetObject("BtnReport.Image")));
             this.BtnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnReport.Location = new System.Drawing.Point(1, 278);
+            this.BtnReport.Location = new System.Drawing.Point(-1, 353);
             this.BtnReport.MinimumSize = new System.Drawing.Size(200, 60);
             this.BtnReport.Name = "BtnReport";
             this.BtnReport.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
@@ -213,6 +236,7 @@
         private System.Windows.Forms.Button BtnExit;
         private System.Windows.Forms.Button BtnMinimize;
         private System.Windows.Forms.Button BtnMaximize;
+        private System.Windows.Forms.Button BtnSale;
     }
 }
 

@@ -60,5 +60,21 @@ namespace GUI
                 SanPham.UC_PanelSanPham.Instance.BringToFront();
             }
         }
+
+        private void BtnSale_Click(object sender, EventArgs e)
+        {
+            if (!PanelContent.Controls.Contains(BanHang.UC_PanelBanHang.Instance))
+            {
+                PanelContent.Controls.Add(BanHang.UC_PanelBanHang.Instance);
+                BanHang.UC_PanelBanHang.Instance.Dock = DockStyle.Fill;
+                BanHang.UC_PanelBanHang.Instance.BringToFront();
+            }
+            else
+            {
+                //SanPham.UC_PanelSanPham.Instance.ReLoad();
+                BanHang.UC_PanelBanHang.Instance.ReloadForm();
+                BanHang.UC_PanelBanHang.Instance.BringToFront();
+            }
+        }
     }
 }

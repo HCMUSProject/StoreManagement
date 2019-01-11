@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BanHang\UC_BanHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BanHang\UC_BanHang.Designer.cs">
+      <DependentUpon>UC_BanHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BanHang\UC_PanelBanHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BanHang\UC_PanelBanHang.Designer.cs">
+      <DependentUpon>UC_PanelBanHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +113,12 @@
     <Compile Include="SanPham\UC_ViewProduct.Designer.cs">
       <DependentUpon>UC_ViewProduct.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BanHang\UC_BanHang.resx">
+      <DependentUpon>UC_BanHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BanHang\UC_PanelBanHang.resx">
+      <DependentUpon>UC_PanelBanHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,6 +227,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-warehouse-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-bill-36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-money-bag-24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
