@@ -165,9 +165,11 @@
             // cmbManufacturer
             // 
             this.cmbManufacturer.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.cmbManufacturer.DropDownHeight = 100;
             this.cmbManufacturer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbManufacturer.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cmbManufacturer.FormattingEnabled = true;
+            this.cmbManufacturer.IntegralHeight = false;
             this.cmbManufacturer.Location = new System.Drawing.Point(173, 91);
             this.cmbManufacturer.Name = "cmbManufacturer";
             this.cmbManufacturer.Size = new System.Drawing.Size(247, 27);
@@ -478,6 +480,7 @@
             // 
             // frmThemSanPham
             // 
+            this.AcceptButton = this.BtnAddProduct;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1002, 662);

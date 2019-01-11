@@ -174,7 +174,7 @@ namespace GUI.SanPham
             txbPin.Text = "";
             txbProductName.Text = "";
             txbProductPrice.Text = "";
-            txbProductQuantity.Text = "";
+            //txbProductQuantity.Text = "";
             txbRAM.Text = "";
             txbScreen.Text = "";
             txbStorage.Text = "";
@@ -182,9 +182,87 @@ namespace GUI.SanPham
 
         private void BtnApplyEdit_Click(object sender, EventArgs e)
         {
+            // kiểm tra các trường thông tin cơ bản có bị trống hay không
+            if (txbProductName.Text == "" || txbProductPrice.Text == "" || txbProductQuantity.Text == "")
+            {
+                MessageBox.Show("Không được để trống các trường dữ liệu cơ bản!",
+                    "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                return;
+            }
+            // kiểm tra ở các ô chỉ toàn số có kí tự lạ hay không
+            if (isNumberic(txbProductPrice.Text) == false)
+            {
+                MessageBox.Show("Đơn giá chỉ bao gồm các chữ số!",
+                    "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (isNumberic(txbProductQuantity.Text) == false)
+            {
+                MessageBox.Show("Số lượng chỉ bao gồm các chữ số!",
+                    "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            if (txbCamera.Text == "" || txbCPU.Text == "" || txbGPU.Text == "" || txbMore.Text == ""
+                || txbOS.Text == "" || txbPin.Text == "" || txbRAM.Text == "" || txbScreen.Text == "" || txbStorage.Text == "")
+            {
+                DialogResult dlgResult = MessageBox.Show("Có một số thông tin về Thông số kĩ thuật còn trống!\n Bạn có muốn tiếp tục?",
+                    "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (dlgResult == DialogResult.Cancel)   // nếu người dùng khong muốn tiếp tục
+                {
+                    return;
+                }
+            }
+
             // get được ID_MASP, get ID_CHITIETCAUHINH
             // ghi đè thông tin dựa vào 2 ID này
+            Byte[] arrImage;
+            Bitmap BitImg = new Bitmap(Picimage.Image);
+            using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+            {
+                Image img = BitImg;
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                arrImage = ms.ToArray();
+            }
+            
+            DTO_Product product = new DTO_Product()
+            {
+                ID = this._ProductID,
+                CategoryID = (int)cmbCategories.SelectedValue,
+                ManufacturerID = (int)cmbManufacturer.SelectedValue,
+                ProductName = txbProductName.Text,
+                ProductPrice = int.Parse(txbProductPrice.Text),
+                ProductImage = arrImage
+            };
 
+            DTO_ProductProfile productProfile = new DTO_ProductProfile()
+            {
+                IDProductProfile = this._ID_ProductProfile,
+                CPU = txbCPU.Text,
+                GPU = txbGPU.Text,
+                RAM = txbRAM.Text,
+                Storage = txbStorage.Text,
+                Screen = txbScreen.Text,
+                Camera = txbCamera.Text,
+                PIN = txbPin.Text,
+                OS = txbOS.Text,
+                More = txbMore.Text
+            };
+
+            bool result = bus_Product.BUS_UpdateProductInfoAndProfile(product, productProfile);
+
+            if (result == false)
+            {
+                MessageBox.Show("Không thể sửa thông tin sản phẩm!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            MessageBox.Show("Sửa thông tin sản phẩm thành công!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void BtnExit_Click(object sender, EventArgs e)

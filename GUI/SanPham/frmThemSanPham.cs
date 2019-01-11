@@ -181,11 +181,14 @@ namespace GUI.SanPham
             // thực hiện việc thêm 1 sản phẩm mới vào database
 
             // chuyển từ image sang byte []
+
             Byte[] arrImage;
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            Image img = Picimage.Image;
-            img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-            arrImage = ms.ToArray();
+            using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+            {
+                Image img = Picimage.Image;
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                arrImage = ms.ToArray();
+            }
 
             // lưu thông tin cơ bản vào DTO
 

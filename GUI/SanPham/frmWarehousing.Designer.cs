@@ -30,18 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWarehousing));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.BtnCancel = new System.Windows.Forms.Button();
+            this.BtnAdd = new System.Windows.Forms.Button();
+            this.txbProductPrice = new System.Windows.Forms.TextBox();
+            this.txbProductQuantity = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txbProductName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.BtnExit = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txbProductName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txbProductQuantity = new System.Windows.Forms.TextBox();
-            this.txbProductPrice = new System.Windows.Forms.TextBox();
-            this.BtnAdd = new System.Windows.Forms.Button();
-            this.BtnCancel = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -62,6 +62,85 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(479, 250);
             this.panel2.TabIndex = 6;
+            // 
+            // BtnCancel
+            // 
+            this.BtnCancel.AutoSize = true;
+            this.BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCancel.Image = global::GUI.Properties.Resources.icons8_exit;
+            this.BtnCancel.Location = new System.Drawing.Point(353, 187);
+            this.BtnCancel.Name = "BtnCancel";
+            this.BtnCancel.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.BtnCancel.Size = new System.Drawing.Size(92, 36);
+            this.BtnCancel.TabIndex = 7;
+            this.BtnCancel.Text = "Hủy";
+            this.BtnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnCancel.UseVisualStyleBackColor = true;
+            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // BtnAdd
+            // 
+            this.BtnAdd.AutoSize = true;
+            this.BtnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAdd.Image = global::GUI.Properties.Resources.icons8_checkmark_24;
+            this.BtnAdd.Location = new System.Drawing.Point(255, 187);
+            this.BtnAdd.Name = "BtnAdd";
+            this.BtnAdd.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
+            this.BtnAdd.Size = new System.Drawing.Size(92, 36);
+            this.BtnAdd.TabIndex = 6;
+            this.BtnAdd.Text = "Thêm";
+            this.BtnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnAdd.UseVisualStyleBackColor = true;
+            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
+            // 
+            // txbProductPrice
+            // 
+            this.txbProductPrice.Location = new System.Drawing.Point(184, 130);
+            this.txbProductPrice.Name = "txbProductPrice";
+            this.txbProductPrice.Size = new System.Drawing.Size(261, 26);
+            this.txbProductPrice.TabIndex = 5;
+            // 
+            // txbProductQuantity
+            // 
+            this.txbProductQuantity.Location = new System.Drawing.Point(184, 78);
+            this.txbProductQuantity.Name = "txbProductQuantity";
+            this.txbProductQuantity.Size = new System.Drawing.Size(261, 26);
+            this.txbProductQuantity.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 134);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 19);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Đơn giá:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 82);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 19);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Số lượng:";
+            // 
+            // txbProductName
+            // 
+            this.txbProductName.Location = new System.Drawing.Point(184, 26);
+            this.txbProductName.Name = "txbProductName";
+            this.txbProductName.ReadOnly = true;
+            this.txbProductName.Size = new System.Drawing.Size(261, 26);
+            this.txbProductName.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(126, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Tên sản phẩm:";
             // 
             // panel1
             // 
@@ -108,87 +187,9 @@
             this.BtnExit.UseVisualStyleBackColor = true;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tên sản phẩm:";
-            // 
-            // txbProductName
-            // 
-            this.txbProductName.Location = new System.Drawing.Point(184, 26);
-            this.txbProductName.Name = "txbProductName";
-            this.txbProductName.ReadOnly = true;
-            this.txbProductName.Size = new System.Drawing.Size(261, 26);
-            this.txbProductName.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 82);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 19);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Số lượng:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 134);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 19);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Đơn giá:";
-            // 
-            // txbProductQuantity
-            // 
-            this.txbProductQuantity.Location = new System.Drawing.Point(184, 78);
-            this.txbProductQuantity.Name = "txbProductQuantity";
-            this.txbProductQuantity.Size = new System.Drawing.Size(261, 26);
-            this.txbProductQuantity.TabIndex = 4;
-            // 
-            // txbProductPrice
-            // 
-            this.txbProductPrice.Location = new System.Drawing.Point(184, 130);
-            this.txbProductPrice.Name = "txbProductPrice";
-            this.txbProductPrice.Size = new System.Drawing.Size(261, 26);
-            this.txbProductPrice.TabIndex = 5;
-            // 
-            // BtnAdd
-            // 
-            this.BtnAdd.AutoSize = true;
-            this.BtnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAdd.Image = global::GUI.Properties.Resources.icons8_checkmark_24;
-            this.BtnAdd.Location = new System.Drawing.Point(255, 187);
-            this.BtnAdd.Name = "BtnAdd";
-            this.BtnAdd.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.BtnAdd.Size = new System.Drawing.Size(92, 36);
-            this.BtnAdd.TabIndex = 6;
-            this.BtnAdd.Text = "Thêm";
-            this.BtnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnAdd.UseVisualStyleBackColor = true;
-            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            // 
-            // BtnCancel
-            // 
-            this.BtnCancel.AutoSize = true;
-            this.BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCancel.Image = global::GUI.Properties.Resources.icons8_exit;
-            this.BtnCancel.Location = new System.Drawing.Point(353, 187);
-            this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
-            this.BtnCancel.Size = new System.Drawing.Size(92, 36);
-            this.BtnCancel.TabIndex = 7;
-            this.BtnCancel.Text = "Hủy";
-            this.BtnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnCancel.UseVisualStyleBackColor = true;
-            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
-            // 
             // frmWarehousing
             // 
+            this.AcceptButton = this.BtnAdd;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
@@ -196,7 +197,7 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmWarehousing";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmWarehousing";

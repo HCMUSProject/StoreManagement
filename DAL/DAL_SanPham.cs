@@ -360,5 +360,53 @@ namespace DAL
             }
             return true;
         }
+
+        public bool DAL_UpdateProductInfoAndProfile(DTO_Product product, DTO_ProductProfile productProfile)
+        {
+            try
+            {
+                _conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("UpdateThongTinVaCauHinhSanPham", _conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                })
+                {
+                    // product
+                    cmd.Parameters.AddWithValue("@MaSP", product.ID);
+                    cmd.Parameters.AddWithValue("@MaLoai", product.CategoryID);
+                    cmd.Parameters.AddWithValue("@MaHangSX", product.ManufacturerID);
+                    cmd.Parameters.AddWithValue("@TenSP", product.ProductName);
+                    cmd.Parameters.AddWithValue("@DonGia", product.ProductPrice);
+                    cmd.Parameters.AddWithValue("@HinhAnh", product.ProductImage);
+
+                    // product profile
+                    cmd.Parameters.AddWithValue("@Id_ChiTietCauHinh", productProfile.IDProductProfile);
+                    cmd.Parameters.AddWithValue("@CPU", productProfile.CPU);
+                    cmd.Parameters.AddWithValue("@GPU", productProfile.GPU);
+                    cmd.Parameters.AddWithValue("@RAM", productProfile.RAM);
+                    cmd.Parameters.AddWithValue("@BoNho", productProfile.Storage);
+                    cmd.Parameters.AddWithValue("@ManHinh", productProfile.Screen);
+                    cmd.Parameters.AddWithValue("@Camera", productProfile.Camera);
+                    cmd.Parameters.AddWithValue("@Pin", productProfile.PIN);
+                    cmd.Parameters.AddWithValue("@HeDieuHanh", productProfile.OS);
+                    cmd.Parameters.AddWithValue("@Khac", productProfile.More);
+
+                    if (cmd.ExecuteNonQuery() <= 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            return true;
+        }
     }
 }

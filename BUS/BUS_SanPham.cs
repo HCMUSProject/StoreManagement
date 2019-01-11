@@ -67,5 +67,10 @@ namespace BUS
         {
             return dal_Products.DAL_AddProduct_History(ProductID, Price, Quantity, AdditionDate);
         }
+
+        public bool BUS_UpdateProductInfoAndProfile(DTO_Product product, DTO_ProductProfile productProfile)
+        {
+            return dal_Products.DAL_UpdateProductInfoAndProfile(product, productProfile);
+        }
     }
 }

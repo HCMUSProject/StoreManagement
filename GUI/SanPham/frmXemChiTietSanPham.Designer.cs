@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmXemChiTietSanPham));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.BtnWarehousing = new System.Windows.Forms.Button();
             this.BtnDelete = new System.Windows.Forms.Button();
             this.BtnEdit = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -64,7 +65,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.BtnExit = new System.Windows.Forms.Button();
-            this.BtnWarehousing = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -105,6 +105,23 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1000, 557);
             this.panel3.TabIndex = 3;
+            // 
+            // BtnWarehousing
+            // 
+            this.BtnWarehousing.AutoSize = true;
+            this.BtnWarehousing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnWarehousing.Image = global::GUI.Properties.Resources.icons8_trash_can_24;
+            this.BtnWarehousing.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnWarehousing.Location = new System.Drawing.Point(454, 504);
+            this.BtnWarehousing.Name = "BtnWarehousing";
+            this.BtnWarehousing.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.BtnWarehousing.Size = new System.Drawing.Size(146, 41);
+            this.BtnWarehousing.TabIndex = 14;
+            this.BtnWarehousing.Text = "Nhập thêm";
+            this.BtnWarehousing.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnWarehousing.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnWarehousing.UseVisualStyleBackColor = true;
+            this.BtnWarehousing.Click += new System.EventHandler(this.BtnWarehousing_Click);
             // 
             // BtnDelete
             // 
@@ -168,9 +185,11 @@
             // 
             // lbMore
             // 
+            this.lbMore.AutoSize = true;
             this.lbMore.Location = new System.Drawing.Point(158, 376);
+            this.lbMore.MaximumSize = new System.Drawing.Size(328, 80);
             this.lbMore.Name = "lbMore";
-            this.lbMore.Size = new System.Drawing.Size(328, 80);
+            this.lbMore.Size = new System.Drawing.Size(0, 19);
             this.lbMore.TabIndex = 17;
             // 
             // lbOS
@@ -428,23 +447,6 @@
             this.BtnExit.TabIndex = 5;
             this.BtnExit.UseVisualStyleBackColor = true;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
-            // 
-            // BtnWarehousing
-            // 
-            this.BtnWarehousing.AutoSize = true;
-            this.BtnWarehousing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnWarehousing.Image = global::GUI.Properties.Resources.icons8_trash_can_24;
-            this.BtnWarehousing.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnWarehousing.Location = new System.Drawing.Point(454, 504);
-            this.BtnWarehousing.Name = "BtnWarehousing";
-            this.BtnWarehousing.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.BtnWarehousing.Size = new System.Drawing.Size(146, 41);
-            this.BtnWarehousing.TabIndex = 14;
-            this.BtnWarehousing.Text = "Nhập thêm";
-            this.BtnWarehousing.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnWarehousing.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnWarehousing.UseVisualStyleBackColor = true;
-            this.BtnWarehousing.Click += new System.EventHandler(this.BtnWarehousing_Click);
             // 
             // frmXemChiTietSanPham
             // 

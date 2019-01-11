@@ -479,6 +479,7 @@
             // 
             // frmSuaSanPham
             // 
+            this.AcceptButton = this.BtnApplyEdit;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1002, 662);
