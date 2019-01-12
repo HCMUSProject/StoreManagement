@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS;
+using DTO;
 
 namespace GUI.SanPham
 {
@@ -135,6 +136,16 @@ namespace GUI.SanPham
             frmAdd.ShowDialog();
         }
 
+        private void BtnAddToCart_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Bạn có muốn thêm sản phẩm này vào giỏ hàng?", "Thông báo", 
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (res == DialogResult.OK)
+            {
+                Cart.AddNewProduct(this.ProductID);
+            }
+        }
+
         // ------------------------------------------------------------------------------------
         // di chuyển form
 
@@ -153,8 +164,6 @@ namespace GUI.SanPham
         {
             isMouseDown = false;
         }
-
-        
 
         private void panel2_MouseDown(object sender, MouseEventArgs e)
         {

@@ -47,6 +47,7 @@ namespace GUI.BanHang
             }
             else
             {
+                BanHang.UC_BanHang.Instance.ReloadForm();
                 BanHang.UC_BanHang.Instance.BringToFront();
             }
         }

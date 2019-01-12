@@ -131,7 +131,7 @@
             this.BtnReport.ForeColor = System.Drawing.Color.Black;
             this.BtnReport.Image = ((System.Drawing.Image)(resources.GetObject("BtnReport.Image")));
             this.BtnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnReport.Location = new System.Drawing.Point(-1, 353);
+            this.BtnReport.Location = new System.Drawing.Point(1, 353);
             this.BtnReport.MinimumSize = new System.Drawing.Size(200, 60);
             this.BtnReport.Name = "BtnReport";
             this.BtnReport.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);

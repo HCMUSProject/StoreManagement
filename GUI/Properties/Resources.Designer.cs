@@ -143,6 +143,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_import_24 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-import-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_increase_36 {
             get {
                 object obj = ResourceManager.GetObject("icons8_increase_36", resourceCulture);
@@ -226,6 +236,26 @@ namespace GUI.Properties {
         internal static System.Drawing.Bitmap icons8_right_arrow_filled_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8-right-arrow-filled-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_shopping_cart_24 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-shopping-cart-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_subtract_24 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-subtract-24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

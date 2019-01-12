@@ -234,5 +234,14 @@
   <ItemGroup>
     <None Include="Resources\icons8-money-bag-24.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-shopping-cart-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-import-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-subtract-24.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
