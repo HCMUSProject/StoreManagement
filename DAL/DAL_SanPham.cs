@@ -408,5 +408,36 @@ namespace DAL
             }
             return true;
         }
+
+        public bool DAL_UpdateProductQuantityAfterSale(int ProductID, int QuantitySold)
+        {
+            try
+            {
+                _conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("CapNhatSoLuongSanPhamSauKhiBan", _conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                })
+                {
+                    cmd.Parameters.AddWithValue("@MaSP", ProductID);
+                    cmd.Parameters.AddWithValue("@SoLuongDaBan", QuantitySold);
+
+                    if (cmd.ExecuteNonQuery() <= 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            return true;
+        }
     }
 }

@@ -20,12 +20,14 @@ namespace DTO
             return _listProductIDChosen;
         }
 
-        public static void AddNewProduct(int ProductID)
+        public static bool AddNewProduct(int ProductID)
         {
             if (!_listProductIDChosen.ContainsKey(ProductID))
             {
                 _listProductIDChosen[ProductID] = 1;
+                return true;
             }
+            return false;
         }
 
         public static void IncreaseProductQuantityChosen(int ProductID)

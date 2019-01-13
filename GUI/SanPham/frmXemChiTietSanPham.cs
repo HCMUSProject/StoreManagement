@@ -142,7 +142,15 @@ namespace GUI.SanPham
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (res == DialogResult.OK)
             {
-                Cart.AddNewProduct(this.ProductID);
+                bool result = Cart.AddNewProduct(this.ProductID);
+
+                if (result == false)
+                {
+                    MessageBox.Show("Sản phẩm đã tồn tại trong giỏ hàng!", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                this.Close();
             }
         }
 

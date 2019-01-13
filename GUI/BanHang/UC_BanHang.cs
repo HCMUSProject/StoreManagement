@@ -16,6 +16,8 @@ namespace GUI.BanHang
     {
         #region Variable
         private bool IsSelling = false;
+
+        private List<DTO_Promotion> listPromotion = new List<DTO_Promotion>();
         #endregion
 
 
@@ -47,6 +49,7 @@ namespace GUI.BanHang
             txbCustomerName.Text = "";
             txbCustomerPhone.Text = "";
             txbTotalCost.Text = "";
+            txbPromotion.Text = "";
 
             dtgvShowProduct.Rows.Clear();
         }
@@ -68,7 +71,9 @@ namespace GUI.BanHang
 
         public void ReloadForm()
         {
-            if(IsSelling == true)
+            //dtpkDateSell.Value = DateTime.Now;
+
+            if (IsSelling == true)
             {
                 // xóa dữ liệu trong datagridview
                 dtgvShowProduct.Rows.Clear();
@@ -100,7 +105,7 @@ namespace GUI.BanHang
                                 img = Image.FromStream(ms);
                             }
 
-                            Image ImgResize = resizeImage(img, img.Width * 100 / img.Height, 100);
+                            Image ImgResize = MySupportMethods.ResizeImage(img, img.Width * 100 / img.Height, 100);
 
                             // lấy tên
                             string ProductName = dtProductInfo.Rows[0]["TenSP"].ToString();
@@ -108,11 +113,23 @@ namespace GUI.BanHang
                             int ProductPrice = int.Parse(dtProductInfo.Rows[0]["DonGia"].ToString());
                             // lấy số lượng
                             int ProductQuantityChosen = listProductID[key];
+
+                            
+                            
+                            // đơn giá khuyến mãi
+                            int ProductPriceSale = ProductPrice;
+                            // lấy giá sau khuyến mãi
+                            foreach (var promo in listPromotion)
+                            {
+                                ProductPriceSale = promo.CalcDiscount(ProductPriceSale);
+                            }
+
                             // tổng tiền
-                            int TotalCost = ProductPrice * ProductQuantityChosen;
+                            int TotalCost = ProductPriceSale * ProductQuantityChosen;
+
 
                             // thêm row vào datagridview
-                            dtgvShowProduct.Rows.Add(ImgResize, key, ProductName, ProductQuantityChosen, ProductPrice, TotalCost);
+                            dtgvShowProduct.Rows.Add(ImgResize, key, ProductName, ProductQuantityChosen, ProductPrice, ProductPriceSale, TotalCost);
 
                             TotalCostForAll += TotalCost;
 
@@ -132,6 +149,10 @@ namespace GUI.BanHang
 
                 }
             }
+            else
+            {
+                dtpkDateSell.Value = DateTime.Now;
+            }
         }
 
         private void BtnSetupOrder_Click(object sender, EventArgs e)
@@ -139,6 +160,8 @@ namespace GUI.BanHang
             this.IsSelling = true;
             TurnOnOffFieldsAnhButtons();
             EmptyAllFields();
+
+            dtpkDateSell.Value = DateTime.Now;
 
             // khi nhấn lập phiếu thì clear cart
             Cart.Clear();
@@ -163,14 +186,14 @@ namespace GUI.BanHang
                 return;
             }
             // kiểm tra CMND và số điện thoại có kí tự "lạ" hay không
-            if (isNumberic(txbCustomerID.Text) == false)
+            if (MySupportMethods.isNumberic(txbCustomerID.Text) == false)
             {
                 MessageBox.Show("Chứng minh nhân dân phải là chữ số!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (isNumberic(txbCustomerPhone.Text) == false)
+            if (MySupportMethods.isNumberic(txbCustomerPhone.Text) == false)
             {
                 MessageBox.Show("Số điện thoại phải là chữ số!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -201,10 +224,24 @@ namespace GUI.BanHang
                 listProductChosen.Add(temp);
             }
 
-            // lưu dữ liệu vào database.
-            
-            // update lại số lượng sản phẩm
+            BUS_BanHang bus_SellProducts = new BUS_BanHang();
 
+            int TotalPrice = int.Parse(txbTotalCost.Text);
+
+            // lưu dữ liệu vào database.
+            bool res = bus_SellProducts.BUS_InsertNewOrder(customer, listProductChosen, dtpkDateSell.Value, TotalPrice, listPromotion);
+
+            if (res == false)
+            {
+                MessageBox.Show("Lập phiếu thanh toán thất bại!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("Lập phiếu thanh toán thành công!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
             this.IsSelling = false;
             TurnOnOffFieldsAnhButtons();
         }
@@ -233,7 +270,7 @@ namespace GUI.BanHang
 
             int TotalCost = int.Parse(txbTotalCost.Text);
 
-            int productPrice = int.Parse(dtgvShowProduct.Rows[index].Cells["ProductPrice"].Value.ToString());
+            int productPrice = int.Parse(dtgvShowProduct.Rows[index].Cells["ProductPriceSale"].Value.ToString());
 
             int productQuantity = int.Parse(dtgvShowProduct.Rows[index].Cells["ProductQuantity"].Value.ToString());
 
@@ -263,7 +300,6 @@ namespace GUI.BanHang
             {
                 int ProductID = int.Parse(dtgvShowProduct.SelectedRows[0].Cells["ProductID"].Value.ToString());
 
-                int productPrice = int.Parse(dtgvShowProduct.SelectedRows[0].Cells["ProductPrice"].Value.ToString());
                 int Quantity = int.Parse(dtgvShowProduct.SelectedRows[0].Cells["ProductQuantity"].Value.ToString());
 
                 // get được số lượng còn lại của sản phẩm này trong kho
@@ -291,11 +327,16 @@ namespace GUI.BanHang
                         // update số lượng
                         dtgvShowProduct.SelectedRows[0].Cells["ProductQuantity"].Value = Quantity;
 
+                        // lấy giá 1 sản phẩm
+                        int productPriceAfterSale = (int)dtgvShowProduct.SelectedRows[0].Cells["ProductPriceSale"].Value;
+
                         // update giá tiền
-                        dtgvShowProduct.SelectedRows[0].Cells["ProductTotalCost"].Value = Quantity * productPrice;
+                        int TotalPrice = Quantity * productPriceAfterSale;
+
+                        dtgvShowProduct.SelectedRows[0].Cells["ProductTotalCost"].Value = TotalPrice;
 
                         // update tổng tiền
-                        txbTotalCost.Text = (int.Parse(txbTotalCost.Text) + productPrice).ToString();
+                        txbTotalCost.Text = (int.Parse(txbTotalCost.Text) + productPriceAfterSale).ToString();
                     }
                 }
                 else
@@ -314,7 +355,6 @@ namespace GUI.BanHang
             {
                 int ProductID = int.Parse(dtgvShowProduct.SelectedRows[0].Cells["ProductID"].Value.ToString());
 
-                int productPrice = int.Parse(dtgvShowProduct.SelectedRows[0].Cells["ProductPrice"].Value.ToString());
                 int Quantity = int.Parse(dtgvShowProduct.SelectedRows[0].Cells["ProductQuantity"].Value.ToString());
                 if (Quantity > 1)
                 {
@@ -326,11 +366,16 @@ namespace GUI.BanHang
                     // update số lượng
                     dtgvShowProduct.SelectedRows[0].Cells["ProductQuantity"].Value = Quantity;
 
+                    // lấy giá 1 sản phẩm được giảm giá
+                    int productPriceAfterSale = (int)dtgvShowProduct.SelectedRows[0].Cells["ProductPriceSale"].Value;
+
                     // update giá tiền
-                    dtgvShowProduct.SelectedRows[0].Cells["ProductTotalCost"].Value = Quantity * productPrice;
+                    int TotalPrice = Quantity * productPriceAfterSale;
+
+                    dtgvShowProduct.SelectedRows[0].Cells["ProductTotalCost"].Value = TotalPrice;
 
                     // update tổng tiền
-                    txbTotalCost.Text = (int.Parse(txbTotalCost.Text) - productPrice).ToString();
+                    txbTotalCost.Text = (int.Parse(txbTotalCost.Text) - productPriceAfterSale).ToString();
                 }
                 else
                 {
@@ -341,33 +386,103 @@ namespace GUI.BanHang
             catch(Exception ex) { }
         }
 
-
-        // PHƯƠNG THỨC HỖ TRỢ
-        private Image resizeImage(Image img, int width, int height)
+        private void dtpkDateSell_ValueChanged(object sender, EventArgs e)
         {
-            Bitmap b = new Bitmap(width, height);
-            Graphics g = Graphics.FromImage((Image)b);
+            // xóa danh sách promotion
+            listPromotion.Clear();
+            // reload lại khuyến mãi
+            txbPromotion.Text = "";
 
-            g.DrawImage(img, 0, 0, width, height);
-            g.Dispose();
+            BUS_KhuyenMai bus_Promotion = new BUS_KhuyenMai();
 
-            return (Image)b;
-        }
+            DataTable dtPromotions = bus_Promotion.BUS_GetAllPromotionNow(dtpkDateSell.Value);
 
-        private bool isNumberic(string str)
-        {
-            if (str.Length == 0)
-                return false;
-
-            for (int i = 0; i < str.Length; i++)
+            if (dtPromotions == null)
             {
-                if (!(str[i] >= '0' && str[i] <= '9'))
-                {
-                    return false;
-                }
+                MessageBox.Show("Có lỗi xảy ra trong quá trình load dữ liệu!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            return true;
+            if (dtPromotions.Rows.Count > 0)
+            {
+                foreach(DataRow row in dtPromotions.Rows)
+                {
+                    string temp = "";
+
+                    if ((int)row["PHANTRAM"] > 0 && (int)row["TIENTOIDA"] > 0)
+                    {
+                        temp = $"{row["TENKHUYENMAI"].ToString()} giảm {(int)row["PHANTRAM"]}% tối đa {(int)row["TIENTOIDA"]} VND.";
+                    }
+
+                    if ((int)row["PHANTRAM"] > 0 && (int)row["TIENTOIDA"] == 0)
+                    {
+                        temp = $"{row["TENKHUYENMAI"].ToString()} giảm {(int)row["PHANTRAM"]}%.";
+                    }
+                    if ((int)row["PHANTRAM"] == 0 && (int)row["TIENTOIDA"] > 0)
+                    {
+                        temp = $"{row["TENKHUYENMAI"].ToString()} giảm {(int)row["TIENTOIDA"]} VND.";
+                    }
+
+                    txbPromotion.Text = txbPromotion.Text + temp + Environment.NewLine;
+
+                    // thêm vào list promotions
+                    DTO_Promotion promotion = new DTO_Promotion()
+                    {
+                        PromotionID = (int)row["ID_KHUYENMAI"],
+                        PromotionName = row["TENKHUYENMAI"].ToString(),
+                        PromotionPercent = (int)row["PHANTRAM"],
+                        PromotionMaxDiscount = (int)row["TIENTOIDA"],
+                        PromotionBeginDate = (DateTime)row["NGAYBATDAU"],
+                        PromotionEndDate = (DateTime)row["NGAYKETTHUC"]
+                    };
+
+                    listPromotion.Add(promotion);
+                }
+            }
+            else
+            {
+                // nếu không có khuyến mãi
+                listPromotion.Clear();
+            }
+
+            this.ReloadForm();
+
+            //// update lại giá sau khi chọn lại sản phẩm nếu trong bảng sản phẩm có
+            //if (dtgvShowProduct.Rows.Count >= 1)
+            //{
+            //    int TotalPriceForAll = 0;
+            //    foreach(DataGridViewRow row in dtgvShowProduct.Rows)
+            //    {
+            //        // lấy giá gốc của sp
+            //        int ProductPrice = (int)row.Cells["ProductPrice"].Value;
+
+            //        // đơn giá khuyến mãi
+            //        int ProductPriceSale = ProductPrice;
+            //        // lấy giá sau khuyến mãi
+            //        foreach (var promo in listPromotion)
+            //        {
+            //            ProductPriceSale = promo.CalcDiscount(ProductPriceSale);
+            //        }
+
+            //        // update lại giá khuyến mãi
+            //        row.Cells["ProductPriceSale"].Value = ProductPriceSale;
+
+            //        // get số lượng
+            //        int Quantity = int.Parse(row.Cells["ProductQuantity"].Value.ToString());
+
+            //        // update giá tiền
+            //        int TotalPrice = Quantity * ProductPriceSale;
+
+            //        row.Cells["ProductTotalCost"].Value = TotalPrice;
+
+            //        // update lại tổng tiền thanh toán
+            //        TotalPriceForAll += TotalPrice;
+            //    }
+
+            //    txbTotalCost.Text = TotalPriceForAll.ToString();
+
+            //}
         }
     }
 }

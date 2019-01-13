@@ -38,7 +38,7 @@
             // lbProductName
             // 
             this.lbProductName.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbProductName.Location = new System.Drawing.Point(12, 173);
+            this.lbProductName.Location = new System.Drawing.Point(12, 164);
             this.lbProductName.Name = "lbProductName";
             this.lbProductName.Size = new System.Drawing.Size(204, 46);
             this.lbProductName.TabIndex = 0;
@@ -56,9 +56,10 @@
             // 
             // lbProductPrice
             // 
-            this.lbProductPrice.Location = new System.Drawing.Point(13, 224);
+            this.lbProductPrice.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbProductPrice.Location = new System.Drawing.Point(13, 215);
             this.lbProductPrice.Name = "lbProductPrice";
-            this.lbProductPrice.Size = new System.Drawing.Size(98, 22);
+            this.lbProductPrice.Size = new System.Drawing.Size(203, 22);
             this.lbProductPrice.TabIndex = 2;
             this.lbProductPrice.Text = "20.000.000";
             this.lbProductPrice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -66,12 +67,13 @@
             // 
             // lbProductPriceDiscount
             // 
-            this.lbProductPriceDiscount.Location = new System.Drawing.Point(118, 224);
+            this.lbProductPriceDiscount.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbProductPriceDiscount.ForeColor = System.Drawing.Color.Red;
+            this.lbProductPriceDiscount.Location = new System.Drawing.Point(13, 237);
             this.lbProductPriceDiscount.Name = "lbProductPriceDiscount";
-            this.lbProductPriceDiscount.Size = new System.Drawing.Size(98, 22);
+            this.lbProductPriceDiscount.Size = new System.Drawing.Size(203, 22);
             this.lbProductPriceDiscount.TabIndex = 3;
-            this.lbProductPriceDiscount.Text = "20.000.000";
-            this.lbProductPriceDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbProductPriceDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // UC_ViewProduct
             // 

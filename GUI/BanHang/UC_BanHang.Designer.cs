@@ -35,6 +35,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txbPromotion = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.dtpkDateSell = new System.Windows.Forms.DateTimePicker();
             this.txbCustomerPhone = new System.Windows.Forms.TextBox();
             this.txbCustomerAddr = new System.Windows.Forms.TextBox();
@@ -65,6 +67,7 @@
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductPriceSale = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductTotalCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -77,6 +80,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.txbPromotion);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.dtpkDateSell);
             this.groupBox1.Controls.Add(this.txbCustomerPhone);
             this.groupBox1.Controls.Add(this.txbCustomerAddr);
@@ -89,10 +94,29 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(15, 100);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(436, 373);
+            this.groupBox1.Size = new System.Drawing.Size(436, 494);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin khách hàng";
+            // 
+            // txbPromotion
+            // 
+            this.txbPromotion.BackColor = System.Drawing.SystemColors.Window;
+            this.txbPromotion.Location = new System.Drawing.Point(167, 363);
+            this.txbPromotion.Multiline = true;
+            this.txbPromotion.Name = "txbPromotion";
+            this.txbPromotion.ReadOnly = true;
+            this.txbPromotion.Size = new System.Drawing.Size(248, 115);
+            this.txbPromotion.TabIndex = 6;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(14, 367);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(99, 19);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Khuyến mãi";
             // 
             // dtpkDateSell
             // 
@@ -102,6 +126,7 @@
             this.dtpkDateSell.Name = "dtpkDateSell";
             this.dtpkDateSell.Size = new System.Drawing.Size(248, 26);
             this.dtpkDateSell.TabIndex = 4;
+            this.dtpkDateSell.ValueChanged += new System.EventHandler(this.dtpkDateSell_ValueChanged);
             // 
             // txbCustomerPhone
             // 
@@ -247,6 +272,7 @@
             this.ProductName,
             this.ProductQuantity,
             this.ProductPrice,
+            this.ProductPriceSale,
             this.ProductTotalCost});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -325,9 +351,9 @@
             this.groupBox3.Controls.Add(this.BtnEmptyFields);
             this.groupBox3.Controls.Add(this.BtnSetupOrder);
             this.groupBox3.Controls.Add(this.BtnPayment);
-            this.groupBox3.Location = new System.Drawing.Point(15, 489);
+            this.groupBox3.Location = new System.Drawing.Point(15, 600);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(436, 254);
+            this.groupBox3.Size = new System.Drawing.Size(436, 143);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tùy chọn";
@@ -337,7 +363,7 @@
             this.BtnDeleteOrder.AutoSize = true;
             this.BtnDeleteOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnDeleteOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnDeleteOrder.Location = new System.Drawing.Point(16, 107);
+            this.BtnDeleteOrder.Location = new System.Drawing.Point(18, 88);
             this.BtnDeleteOrder.Name = "BtnDeleteOrder";
             this.BtnDeleteOrder.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.BtnDeleteOrder.Size = new System.Drawing.Size(112, 35);
@@ -353,7 +379,7 @@
             this.BtnEmptyFields.AutoSize = true;
             this.BtnEmptyFields.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnEmptyFields.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnEmptyFields.Location = new System.Drawing.Point(289, 54);
+            this.BtnEmptyFields.Location = new System.Drawing.Point(291, 35);
             this.BtnEmptyFields.Name = "BtnEmptyFields";
             this.BtnEmptyFields.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.BtnEmptyFields.Size = new System.Drawing.Size(112, 35);
@@ -369,7 +395,7 @@
             this.BtnSetupOrder.AutoSize = true;
             this.BtnSetupOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSetupOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnSetupOrder.Location = new System.Drawing.Point(16, 54);
+            this.BtnSetupOrder.Location = new System.Drawing.Point(18, 35);
             this.BtnSetupOrder.Name = "BtnSetupOrder";
             this.BtnSetupOrder.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.BtnSetupOrder.Size = new System.Drawing.Size(112, 35);
@@ -385,7 +411,7 @@
             this.BtnPayment.AutoSize = true;
             this.BtnPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnPayment.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnPayment.Location = new System.Drawing.Point(150, 54);
+            this.BtnPayment.Location = new System.Drawing.Point(152, 35);
             this.BtnPayment.Name = "BtnPayment";
             this.BtnPayment.Padding = new System.Windows.Forms.Padding(5, 2, 5, 2);
             this.BtnPayment.Size = new System.Drawing.Size(121, 35);
@@ -417,25 +443,34 @@
             // 
             // ProductQuantity
             // 
+            this.ProductQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.ProductQuantity.DefaultCellStyle = dataGridViewCellStyle2;
             this.ProductQuantity.HeaderText = "Số lượng";
             this.ProductQuantity.Name = "ProductQuantity";
             this.ProductQuantity.ReadOnly = true;
+            this.ProductQuantity.Width = 106;
             // 
             // ProductPrice
             // 
+            this.ProductPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.ProductPrice.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ProductPrice.HeaderText = "Đon giá (VND)";
+            this.ProductPrice.HeaderText = "Đơn giá";
             this.ProductPrice.Name = "ProductPrice";
             this.ProductPrice.ReadOnly = true;
+            // 
+            // ProductPriceSale
+            // 
+            this.ProductPriceSale.HeaderText = "Đơn giá khuyến mãi";
+            this.ProductPriceSale.Name = "ProductPriceSale";
+            this.ProductPriceSale.ReadOnly = true;
             // 
             // ProductTotalCost
             // 
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.ProductTotalCost.DefaultCellStyle = dataGridViewCellStyle4;
-            this.ProductTotalCost.HeaderText = "Thành tiền (VND)";
+            this.ProductTotalCost.HeaderText = "Tổng giá";
             this.ProductTotalCost.Name = "ProductTotalCost";
             this.ProductTotalCost.ReadOnly = true;
             // 
@@ -494,11 +529,14 @@
         private System.Windows.Forms.ToolStripMenuItem RemoveProduct_ContextMenu;
         private System.Windows.Forms.ToolStripMenuItem IncreaseQuantity_ContextMenu;
         private System.Windows.Forms.ToolStripMenuItem DecreaseQuantity_ContextMenu;
+        private System.Windows.Forms.TextBox txbPromotion;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridViewImageColumn ProductImage;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductPriceSale;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductTotalCost;
     }
 }

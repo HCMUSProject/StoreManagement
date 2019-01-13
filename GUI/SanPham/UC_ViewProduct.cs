@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DTO;
+using BUS;
 
 namespace GUI.SanPham
 {
@@ -39,13 +41,56 @@ namespace GUI.SanPham
             }
 
             lbProductName.Text = _ProductName;
-            lbProductPrice.Text = _Price.ToString();
+            lbProductPrice.Text = MySupportMethods.StrMoneyToStrCurrency(_Price.ToString());
+            //lbProductPrice.Text = _Price.ToString();
             picImageProduct.Image = _Img;
-        }
 
-        private void EventWhenClick()
-        {
-            MessageBox.Show("aaa");
+            // tìm khuyến mãi hiện tại có phần trăm lớn nhất
+            // update giá
+            BUS_KhuyenMai bus_Promotion = new BUS_KhuyenMai();
+
+            DataTable dtPromotions = bus_Promotion.BUS_GetAllPromotionNow(DateTime.Now);
+
+            if (dtPromotions == null)
+            {
+                MessageBox.Show("Có lỗi trong quá trình load dữ liệu!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (dtPromotions.Rows.Count == 0)
+            {
+                // không có giảm giá
+                lbProductPriceDiscount.Text = lbProductPrice.Text;
+                lbProductPriceDiscount.Visible = false;
+
+                lbProductPrice.Font = new Font(lbProductPrice.Font, FontStyle.Regular);
+            }
+            else
+            {
+                //  nếu có khuyến mãi
+                DTO_Promotion promotion = new DTO_Promotion()
+                {
+                    PromotionID = (int)dtPromotions.Rows[0]["ID_KHUYENMAI"],
+                    PromotionName = dtPromotions.Rows[0]["TENKHUYENMAI"].ToString(),
+                    PromotionPercent = (int)dtPromotions.Rows[0]["PHANTRAM"],
+                    PromotionMaxDiscount = (int)dtPromotions.Rows[0]["TIENTOIDA"],
+                    PromotionBeginDate = (DateTime)dtPromotions.Rows[0]["NGAYBATDAU"],
+                    PromotionEndDate = (DateTime)dtPromotions.Rows[0]["NGAYKETTHUC"],
+                };
+
+                if (DateTime.Now >= promotion.PromotionBeginDate && DateTime.Now <= promotion.PromotionEndDate)
+                {
+                    lbProductPriceDiscount.Visible = true;
+
+                    lbProductPrice.Font = new Font(lbProductPrice.Font, FontStyle.Strikeout);
+
+                    // remove tất cả các dấu chấm phân cách
+                    int productPrice = MySupportMethods.StrCurrencyToInt(lbProductPrice.Text);
+
+                    lbProductPriceDiscount.Text = MySupportMethods.StrMoneyToStrCurrency(promotion.CalcDiscount(productPrice).ToString());
+                }
+            }
         }
 
         private void picImageProduct_Click(object sender, EventArgs e)
