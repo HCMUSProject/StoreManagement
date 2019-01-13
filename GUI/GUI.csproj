@@ -58,6 +58,18 @@
     <Compile Include="BanHang\UC_PanelBanHang.Designer.cs">
       <DependentUpon>UC_PanelBanHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\UC_PanelBaoCao.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\UC_PanelBaoCao.Designer.cs">
+      <DependentUpon>UC_PanelBaoCao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\UC_ThongKeDoanhThu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\UC_ThongKeDoanhThu.Designer.cs">
+      <DependentUpon>UC_ThongKeDoanhThu.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +130,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BanHang\UC_PanelBanHang.resx">
       <DependentUpon>UC_PanelBanHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\UC_PanelBaoCao.resx">
+      <DependentUpon>UC_PanelBaoCao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\UC_ThongKeDoanhThu.resx">
+      <DependentUpon>UC_ThongKeDoanhThu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -248,6 +266,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-commercial-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-account-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-pie-chart-24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

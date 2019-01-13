@@ -71,9 +71,22 @@ namespace GUI
             }
             else
             {
-                //SanPham.UC_PanelSanPham.Instance.ReLoad();
                 BanHang.UC_PanelBanHang.Instance.ReloadForm();
                 BanHang.UC_PanelBanHang.Instance.BringToFront();
+            }
+        }
+
+        private void BtnReport_Click(object sender, EventArgs e)
+        {
+            if (!PanelContent.Controls.Contains(BaoCao.UC_PanelBaoCao.Instance))
+            {
+                PanelContent.Controls.Add(BaoCao.UC_PanelBaoCao.Instance);
+                BaoCao.UC_PanelBaoCao.Instance.Dock = DockStyle.Fill;
+                BaoCao.UC_PanelBaoCao.Instance.BringToFront();
+            }
+            else
+            {
+                BaoCao.UC_PanelBaoCao.Instance.BringToFront();
             }
         }
     }

@@ -140,6 +140,7 @@
             this.BtnReport.Text = "Báo cáo";
             this.BtnReport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnReport.UseVisualStyleBackColor = true;
+            this.BtnReport.Click += new System.EventHandler(this.BtnReport_Click);
             // 
             // PanelContent
             // 
