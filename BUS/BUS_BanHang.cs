@@ -37,7 +37,7 @@ namespace BUS
             if (dtSellingHistory.Rows.Count > 0)
             {
                 // lấy dòng đầu tiên
-                ID_SellingHistory = (int)dtSellingHistory.Rows[0]["NGAYBAN"];
+                ID_SellingHistory = (int)dtSellingHistory.Rows[0]["ID_LICHSUBANHANG"];
             }
             else
             {

@@ -354,6 +354,9 @@ select * from LICHSUNHAPKHO
 
 select * from LICHSUBANHANG
 
+
+select * from CHITIETDONHANG
+select * from SANPHAM
 select * from CHITIETKHUYENMAI
 
 delete SANPHAM

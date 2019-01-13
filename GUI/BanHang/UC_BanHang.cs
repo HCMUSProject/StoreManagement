@@ -67,6 +67,8 @@ namespace GUI.BanHang
             txbCustomerName.Enabled = this.IsSelling;
             txbCustomerPhone.Enabled = this.IsSelling;
             dtpkDateSell.Enabled = this.IsSelling;
+
+            dtgvShowProduct.Enabled = this.IsSelling;
         }
 
         public void ReloadForm()
@@ -243,6 +245,7 @@ namespace GUI.BanHang
             }
             
             this.IsSelling = false;
+
             TurnOnOffFieldsAnhButtons();
         }
 

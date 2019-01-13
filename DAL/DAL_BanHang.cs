@@ -84,7 +84,7 @@ namespace DAL
             {
                 _conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("ThemChiTietDonHang")
+                using (SqlCommand cmd = new SqlCommand("ThemChiTietDonHang", _conn)
                 {
                     CommandType = CommandType.StoredProcedure,
                 })
