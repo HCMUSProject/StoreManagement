@@ -72,5 +72,10 @@ namespace BUS
         {
             return dal_Products.DAL_UpdateProductInfoAndProfile(product, productProfile);
         }
+
+        public DataTable BUS_GetListProductExpireByCategoryID(int CategoryID)
+        {
+            return dal_Products.DAL_GetListProductExpireByCategoryID(CategoryID);
+        }
     }
 }

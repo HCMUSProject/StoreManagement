@@ -439,5 +439,35 @@ namespace DAL
             }
             return true;
         }
+
+        public DataTable DAL_GetListProductExpireByCategoryID(int CategoryID)
+        {
+            DataTable dt = null;
+            try
+            {
+                _conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("GetCacSanPhamGanHetTheoLoaiSP", _conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                })
+                {
+                    cmd.Parameters.AddWithValue("@MaLoai", CategoryID);
+
+                    dt = new DataTable();
+
+                    dt.Load(cmd.ExecuteReader());
+                }
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            return dt;
+        }
     }
 }

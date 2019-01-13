@@ -15,6 +15,13 @@ namespace GUI
         public MainForm()
         {
             InitializeComponent();
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            BtnProducts.PerformClick();
+
         }
 
         private void BtnExit_Click(object sender, EventArgs e)
@@ -39,11 +46,6 @@ namespace GUI
         {
             this.WindowState = FormWindowState.Minimized;
             this.MinimumSize = this.Size;
-        }
-
-        private void BtnHome_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void BtnProducts_Click(object sender, EventArgs e)

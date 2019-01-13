@@ -202,6 +202,14 @@ namespace GUI.BanHang
                 return;
             }
 
+            DialogResult dlgRes = MessageBox.Show("Bạn có muốn thanh toán?", "Thông báo",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (dlgRes == DialogResult.Cancel)
+            {
+                return;
+            }
+
             // đóng gói thông tin khách hàng
             DTO_Customer customer = new DTO_Customer()
             {
@@ -245,6 +253,8 @@ namespace GUI.BanHang
             }
             
             this.IsSelling = false;
+
+            EmptyAllFields();
 
             TurnOnOffFieldsAnhButtons();
         }

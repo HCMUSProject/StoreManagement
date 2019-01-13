@@ -46,6 +46,7 @@
     <Compile Include="BUS_KhuyenMai.cs" />
     <Compile Include="BUS_SanPham.cs" />
     <Compile Include="BUS_LoaiSanPham.cs" />
+    <Compile Include="BUS_BaoCao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.PanelButton = new System.Windows.Forms.Panel();
             this.BtnSale = new System.Windows.Forms.Button();
-            this.BtnHome = new System.Windows.Forms.Button();
             this.BtnProducts = new System.Windows.Forms.Button();
             this.BtnReport = new System.Windows.Forms.Button();
             this.PanelContent = new System.Windows.Forms.Panel();
@@ -39,6 +38,9 @@
             this.BtnExit = new System.Windows.Forms.Button();
             this.BtnMinimize = new System.Windows.Forms.Button();
             this.BtnMaximize = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.PanelButton.SuspendLayout();
             this.PanelIntro.SuspendLayout();
             this.SuspendLayout();
@@ -50,7 +52,6 @@
             this.PanelButton.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.PanelButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PanelButton.Controls.Add(this.BtnSale);
-            this.PanelButton.Controls.Add(this.BtnHome);
             this.PanelButton.Controls.Add(this.BtnProducts);
             this.PanelButton.Controls.Add(this.BtnReport);
             this.PanelButton.Location = new System.Drawing.Point(0, 80);
@@ -78,27 +79,6 @@
             this.BtnSale.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnSale.UseVisualStyleBackColor = true;
             this.BtnSale.Click += new System.EventHandler(this.BtnSale_Click);
-            // 
-            // BtnHome
-            // 
-            this.BtnHome.FlatAppearance.BorderSize = 0;
-            this.BtnHome.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray;
-            this.BtnHome.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
-            this.BtnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnHome.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnHome.ForeColor = System.Drawing.Color.Black;
-            this.BtnHome.Image = ((System.Drawing.Image)(resources.GetObject("BtnHome.Image")));
-            this.BtnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnHome.Location = new System.Drawing.Point(1, 86);
-            this.BtnHome.MinimumSize = new System.Drawing.Size(200, 60);
-            this.BtnHome.Name = "BtnHome";
-            this.BtnHome.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.BtnHome.Size = new System.Drawing.Size(200, 60);
-            this.BtnHome.TabIndex = 3;
-            this.BtnHome.Text = "Trang chủ";
-            this.BtnHome.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnHome.UseVisualStyleBackColor = true;
-            this.BtnHome.Click += new System.EventHandler(this.BtnHome_Click);
             // 
             // BtnProducts
             // 
@@ -157,6 +137,9 @@
             // PanelIntro
             // 
             this.PanelIntro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(53)))), ((int)(((byte)(238)))));
+            this.PanelIntro.Controls.Add(this.label3);
+            this.PanelIntro.Controls.Add(this.label2);
+            this.PanelIntro.Controls.Add(this.label1);
             this.PanelIntro.Controls.Add(this.BtnExit);
             this.PanelIntro.Controls.Add(this.BtnMinimize);
             this.PanelIntro.Controls.Add(this.BtnMaximize);
@@ -205,6 +188,37 @@
             this.BtnMaximize.UseVisualStyleBackColor = true;
             this.BtnMaximize.Click += new System.EventHandler(this.BtnMaximize_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Consolas", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(72, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(585, 32);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "CỬA HÀNG ĐIỆN THOẠI / LAPTOP MINH HIẾU";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(74, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(468, 19);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Địa chỉ: Kí túc xá Đại học Quốc gia TP. Hồ Chí Minh";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(580, 48);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(153, 19);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "SĐT: 01234567890";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -220,8 +234,10 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý cửa hàng";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.PanelButton.ResumeLayout(false);
             this.PanelIntro.ResumeLayout(false);
+            this.PanelIntro.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -232,12 +248,14 @@
         private System.Windows.Forms.Button BtnProducts;
         private System.Windows.Forms.Button BtnReport;
         private System.Windows.Forms.Panel PanelContent;
-        private System.Windows.Forms.Button BtnHome;
         private System.Windows.Forms.Panel PanelIntro;
         private System.Windows.Forms.Button BtnExit;
         private System.Windows.Forms.Button BtnMinimize;
         private System.Windows.Forms.Button BtnMaximize;
         private System.Windows.Forms.Button BtnSale;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 

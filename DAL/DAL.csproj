@@ -47,6 +47,7 @@
     <Compile Include="DAL_KhuyenMai.cs" />
     <Compile Include="DAL_LoaiSanPham.cs" />
     <Compile Include="DAL_SanPham.cs" />
+    <Compile Include="DAL_BaoCao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
