@@ -136,7 +136,7 @@ namespace GUI.BanHang
                             TotalCostForAll += TotalCost;
 
                             // cập nhật tổng tiền
-                            txbTotalCost.Text = TotalCostForAll.ToString();
+                            txbTotalCost.Text = MySupportMethods.StrMoneyToStrCurrency(TotalCostForAll.ToString());
                         }
                         else
                         {
@@ -153,7 +153,7 @@ namespace GUI.BanHang
             }
             else
             {
-                dtpkDateSell.Value = DateTime.Now;
+                //dtpkDateSell.Value = DateTime.Now;
             }
         }
 
@@ -228,7 +228,7 @@ namespace GUI.BanHang
 
             BUS_BanHang bus_SellProducts = new BUS_BanHang();
 
-            int TotalPrice = int.Parse(txbTotalCost.Text);
+            int TotalPrice = MySupportMethods.StrCurrencyToInt(txbTotalCost.Text);
 
             // lưu dữ liệu vào database.
             bool res = bus_SellProducts.BUS_InsertNewOrder(customer, listProductChosen, dtpkDateSell.Value, TotalPrice, listPromotion);
@@ -271,13 +271,13 @@ namespace GUI.BanHang
 
             int ProductID = int.Parse(dtgvShowProduct.Rows[index].Cells["ProductID"].Value.ToString());
 
-            int TotalCost = int.Parse(txbTotalCost.Text);
+            int TotalCost = MySupportMethods.StrCurrencyToInt(txbTotalCost.Text);
 
             int productPrice = int.Parse(dtgvShowProduct.Rows[index].Cells["ProductPriceSale"].Value.ToString());
 
             int productQuantity = int.Parse(dtgvShowProduct.Rows[index].Cells["ProductQuantity"].Value.ToString());
 
-            txbTotalCost.Text = (TotalCost - productPrice * productQuantity).ToString();
+            txbTotalCost.Text = MySupportMethods.StrMoneyToStrCurrency((TotalCost - productPrice * productQuantity).ToString());
 
             dtgvShowProduct.Rows.RemoveAt(index);
 
@@ -339,7 +339,7 @@ namespace GUI.BanHang
                         dtgvShowProduct.SelectedRows[0].Cells["ProductTotalCost"].Value = TotalPrice;
 
                         // update tổng tiền
-                        txbTotalCost.Text = (int.Parse(txbTotalCost.Text) + productPriceAfterSale).ToString();
+                        txbTotalCost.Text = MySupportMethods.StrMoneyToStrCurrency((MySupportMethods.StrCurrencyToInt(txbTotalCost.Text) + productPriceAfterSale).ToString());
                     }
                 }
                 else
@@ -378,7 +378,7 @@ namespace GUI.BanHang
                     dtgvShowProduct.SelectedRows[0].Cells["ProductTotalCost"].Value = TotalPrice;
 
                     // update tổng tiền
-                    txbTotalCost.Text = (int.Parse(txbTotalCost.Text) - productPriceAfterSale).ToString();
+                    txbTotalCost.Text = MySupportMethods.StrMoneyToStrCurrency((MySupportMethods.StrCurrencyToInt(txbTotalCost.Text) - productPriceAfterSale).ToString());
                 }
                 else
                 {

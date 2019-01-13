@@ -42,7 +42,7 @@ namespace GUI.SanPham
 
             if (dtProductInfo == null)
             {
-                MessageBox.Show("Có lỗi xảy ra khi load dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Có lỗi xảy ra khi load dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -52,7 +52,7 @@ namespace GUI.SanPham
                 lbName.Text = dtProductInfo.Rows[0]["TENSP"].ToString();
                 lbManufacturer.Text = dtProductInfo.Rows[0]["TENHANG"].ToString();
                 lbQuantity.Text = dtProductInfo.Rows[0]["SOLUONG"].ToString();
-                lbPrice.Text = dtProductInfo.Rows[0]["DONGIA"].ToString();
+                lbPrice.Text = MySupportMethods.StrMoneyToStrCurrency(dtProductInfo.Rows[0]["DONGIA"].ToString());
                 Byte[] arrByteImage = (Byte[])dtProductInfo.Rows[0]["HINHANH"];
 
                 using (System.IO.MemoryStream ms = new System.IO.MemoryStream(arrByteImage))
@@ -71,7 +71,7 @@ namespace GUI.SanPham
 
             if (dtProductDetail == null)
             {
-                MessageBox.Show("Có lỗi xảy ra khi load dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Có lỗi xảy ra khi load dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -134,6 +134,8 @@ namespace GUI.SanPham
             frmWarehousing frmAdd = new frmWarehousing(this.ProductID);
 
             frmAdd.ShowDialog();
+
+            this.Close();
         }
 
         private void BtnAddToCart_Click(object sender, EventArgs e)
@@ -142,11 +144,40 @@ namespace GUI.SanPham
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (res == DialogResult.OK)
             {
-                bool result = Cart.AddNewProduct(this.ProductID);
+                // query để kiểm tra xem có còn dư sản phẩm này trong csdl hay không
+                DataTable dtProductInfo = bus_Products.BUS_GetBasicInfo_Products(this.ProductID);
 
-                if (result == false)
+                if (dtProductInfo == null)
                 {
-                    MessageBox.Show("Sản phẩm đã tồn tại trong giỏ hàng!", "Thông báo",
+                    MessageBox.Show("Có lỗi xảy ra khi load dữ liệu!!", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    this.Close();
+
+                    return;
+                }
+
+                if (dtProductInfo.Rows.Count == 1)
+                {
+                    if ((int)dtProductInfo.Rows[0]["SOLUONG"] > 0)
+                    {
+                        bool result = Cart.AddNewProduct(this.ProductID);
+
+                        if (result == false)
+                        {
+                            MessageBox.Show("Sản phẩm đã tồn tại trong giỏ hàng!", "Thông báo",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sản phẩm đã hết hàng trong kho!", "Thông báo",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sản phẩm không tồn tại!", "Thông báo",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 

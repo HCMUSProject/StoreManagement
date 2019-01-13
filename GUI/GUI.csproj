@@ -243,5 +243,11 @@
   <ItemGroup>
     <None Include="Resources\icons8-subtract-24.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-sale-filled-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-commercial-24.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

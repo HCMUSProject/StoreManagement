@@ -30,6 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.PanelContent = new System.Windows.Forms.Panel();
+            this.BtnPromotion = new System.Windows.Forms.Button();
             this.BtnSellProducts = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -37,6 +38,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.BtnPromotion);
             this.panel1.Controls.Add(this.BtnSellProducts);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -52,6 +54,28 @@
             this.PanelContent.Name = "PanelContent";
             this.PanelContent.Size = new System.Drawing.Size(1330, 770);
             this.PanelContent.TabIndex = 2;
+            // 
+            // BtnPromotion
+            // 
+            this.BtnPromotion.AutoSize = true;
+            this.BtnPromotion.FlatAppearance.BorderSize = 0;
+            this.BtnPromotion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.BtnPromotion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.BtnPromotion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPromotion.ForeColor = System.Drawing.Color.Black;
+            this.BtnPromotion.Image = global::GUI.Properties.Resources.icons8_commercial_24;
+            this.BtnPromotion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnPromotion.Location = new System.Drawing.Point(156, 0);
+            this.BtnPromotion.Margin = new System.Windows.Forms.Padding(0);
+            this.BtnPromotion.Name = "BtnPromotion";
+            this.BtnPromotion.Padding = new System.Windows.Forms.Padding(10, 0, 5, 0);
+            this.BtnPromotion.Size = new System.Drawing.Size(238, 50);
+            this.BtnPromotion.TabIndex = 2;
+            this.BtnPromotion.Tag = "0";
+            this.BtnPromotion.Text = "  Quản lí khuyến mãi";
+            this.BtnPromotion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnPromotion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnPromotion.UseVisualStyleBackColor = true;
             // 
             // BtnSellProducts
             // 
@@ -98,5 +122,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button BtnSellProducts;
         private System.Windows.Forms.Panel PanelContent;
+        private System.Windows.Forms.Button BtnPromotion;
     }
 }

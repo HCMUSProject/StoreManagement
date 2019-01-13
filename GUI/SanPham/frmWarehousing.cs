@@ -86,6 +86,8 @@ namespace GUI.SanPham
             }
 
             MessageBox.Show("Nhập thêm vào kho thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            this.Close();
         }
 
 
