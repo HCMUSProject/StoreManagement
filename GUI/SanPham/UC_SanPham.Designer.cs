@@ -124,9 +124,12 @@
             // txbSearch
             // 
             this.txbSearch.Location = new System.Drawing.Point(812, 16);
+            this.txbSearch.MaxLength = 100;
             this.txbSearch.Name = "txbSearch";
             this.txbSearch.Size = new System.Drawing.Size(240, 26);
             this.txbSearch.TabIndex = 5;
+            this.txbSearch.TextChanged += new System.EventHandler(this.txbSearch_TextChanged);
+            this.txbSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbSearch_KeyPress);
             // 
             // cmbSort
             // 

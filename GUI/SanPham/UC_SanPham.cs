@@ -497,6 +497,8 @@ namespace GUI.SanPham
 
         public void ReloadForm()
         {
+            txbSearch.Text = "";
+
             XoaDuLieu();
 
             // set currentpage là page đầu tiên
@@ -525,16 +527,96 @@ namespace GUI.SanPham
 
         private void BtnSearch_Click(object sender, EventArgs e)
         {
-            // query
+            XoaDuLieu();
 
-            DataTable dtProducts = bus_Products.BUS_SearchProductByString(txbSearch.Text);
+            listProducts.Clear();
 
-            if (dtProducts == null || dtProducts.Rows.Count == 0)
+            DataTable dtProductSearch = bus_Products.BUS_SearchProductByString(txbSearch.Text);
+
+            if (txbSearch.Text.Length == 0)
             {
+                MessageBox.Show("Ô tìm kiếm không được để rỗng!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            if (dtProductSearch == null)
+            {
+                MessageBox.Show("Có lỗi xảy ra khi load dữ liệu!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (dtProductSearch.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có sản phẩm để hiển thị!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // reset combo box về mặc định
+            cmbProductCategories.SelectedIndex = cmbProductCategories.FindString("Tất cả");
+
+            ComboBox_CurrentSelectedValue = (int)cmbProductCategories.SelectedValue;
+
+            cmbSort.SelectedIndex = cmbSort.FindString("Không");
             
+
+            // set currentpage là page đầu tiên
+            CurrentPage = 1;
+
+            // load data
+            foreach (DataRow row in dtProductSearch.Rows)
+            {
+                DTO_Product product = new DTO_Product
+                {
+                    ID = int.Parse(row["ID_MASP"].ToString()),
+                    CategoryID = int.Parse(row["ID_MALOAI"].ToString()),
+                    ManufacturerID = int.Parse(row["ID_HANGSX"].ToString()),
+                    ProductName = row["TENSP"].ToString(),
+                    ProductQuantity = int.Parse(row["SOLUONG"].ToString()),
+                    ProductPrice = int.Parse(row["DONGIA"].ToString()),
+                    ProductImage = (Byte[])row["HINHANH"]
+                };
+
+                listProducts.Add(product);
+            }
+
+            // get max cell
+            this.GetMaxCellInPage_PanelGridProducts();
+
+            // get max page
+            this.GetMaxPage_PanelGridProducts();
+
+            // load data vô current page
+            RenderFrameAndDataToCurrentPage();
+        }
+
+
+        private bool isSearched = false;
+
+        private void txbSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)    // nhấn enter
+            {
+                isSearched = true;
+                BtnSearch.PerformClick();
+            }
+        }
+
+        
+
+        private void txbSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (txbSearch.Text.Length == 0 && isSearched == true)
+            {
+                // lúc này mới reload lại form với category là tất cả. gọi hàm reload
+                isSearched = false;
+
+                listProducts.Clear();
+
+                this.ReloadForm();
+            }
         }
     }
 }
