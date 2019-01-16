@@ -31,7 +31,7 @@ namespace GUI.SanPham
 
             this.ProductID = Product_ID;
 
-            Picimage.SizeMode = PictureBoxSizeMode.StretchImage;
+            Picimage.SizeMode = PictureBoxSizeMode.CenterImage;
 
             DisplayProductDetail();
         }
@@ -57,7 +57,7 @@ namespace GUI.SanPham
 
                 using (System.IO.MemoryStream ms = new System.IO.MemoryStream(arrByteImage))
                 {
-                    Picimage.Image = Image.FromStream(ms);
+                    Picimage.Image = MySupportMethods.ResizeImage(Image.FromStream(ms), Image.FromStream(ms).Width * 280 / Image.FromStream(ms).Height, 280);
                 }
             }
             else

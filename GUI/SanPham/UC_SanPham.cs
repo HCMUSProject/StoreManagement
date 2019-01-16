@@ -520,5 +520,21 @@ namespace GUI.SanPham
             // load data vô current page
             RenderFrameAndDataToCurrentPage();
         }
+
+       
+
+        private void BtnSearch_Click(object sender, EventArgs e)
+        {
+            // query
+
+            DataTable dtProducts = bus_Products.BUS_SearchProductByString(txbSearch.Text);
+
+            if (dtProducts == null || dtProducts.Rows.Count == 0)
+            {
+                return;
+            }
+
+            
+        }
     }
 }

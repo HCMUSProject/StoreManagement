@@ -469,5 +469,35 @@ namespace DAL
             }
             return dt;
         }
+
+        public DataTable DAL_SearchProductByString(string str)
+        {
+            DataTable dt = null;
+            try
+            {
+                _conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("TimKiemSanPham", _conn)
+                {
+                    CommandType = CommandType.StoredProcedure,
+                })
+                {
+                    cmd.Parameters.AddWithValue("@Chuoi", str);
+
+                    dt = new DataTable();
+
+                    dt.Load(cmd.ExecuteReader());
+                }
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                _conn.Close();
+            }
+            return dt;
+        }
     }
 }

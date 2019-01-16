@@ -29,7 +29,7 @@ namespace GUI.SanPham
         {
             InitializeComponent();
 
-            picImageProduct.SizeMode = PictureBoxSizeMode.StretchImage;
+            picImageProduct.SizeMode = PictureBoxSizeMode.CenterImage;
 
             _ProductID = ID;
             _ProductName = Name;
@@ -43,7 +43,7 @@ namespace GUI.SanPham
             lbProductName.Text = _ProductName;
             lbProductPrice.Text = MySupportMethods.StrMoneyToStrCurrency(_Price.ToString());
             //lbProductPrice.Text = _Price.ToString();
-            picImageProduct.Image = _Img;
+            picImageProduct.Image = MySupportMethods.ResizeImage(_Img,_Img.Width * 150 / _Img.Height, 150);
 
             // tìm khuyến mãi hiện tại có phần trăm lớn nhất
             // update giá

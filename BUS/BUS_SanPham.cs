@@ -77,5 +77,10 @@ namespace BUS
         {
             return dal_Products.DAL_GetListProductExpireByCategoryID(CategoryID);
         }
+
+        public DataTable BUS_SearchProductByString(string str)
+        {
+            return dal_Products.DAL_SearchProductByString(str);
+        }
     }
 }

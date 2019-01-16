@@ -36,7 +36,7 @@ namespace GUI.SanPham
                 this.Close();
             }
 
-            Picimage.SizeMode = PictureBoxSizeMode.StretchImage;
+            Picimage.SizeMode = PictureBoxSizeMode.CenterImage;
         }
 
         // trước tiên là load dữ liệu vào các combo box
@@ -137,7 +137,9 @@ namespace GUI.SanPham
             {
                 string filePath = dlgOpen.FileName;
 
-                Picimage.Image = new Bitmap(filePath);
+                Image img = new Bitmap(filePath);
+
+                Picimage.Image = MySupportMethods.ResizeImage(img, img.Width * 280 / img.Height, 280);
             }
         }
 

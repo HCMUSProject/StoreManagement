@@ -160,6 +160,7 @@
             this.BtnSearch.TabIndex = 8;
             this.BtnSearch.Text = "Tìm";
             this.BtnSearch.UseVisualStyleBackColor = true;
+            this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // UC_SanPham
             // 
