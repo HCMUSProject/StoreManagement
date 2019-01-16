@@ -64,6 +64,12 @@
     <Compile Include="BanHang\UC_PanelBanHang.Designer.cs">
       <DependentUpon>UC_PanelBanHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="BanHang\UC_KhuyenMai.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BanHang\UC_KhuyenMai.Designer.cs">
+      <DependentUpon>UC_KhuyenMai.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\UC_PanelBaoCao.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -142,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BanHang\UC_PanelBanHang.resx">
       <DependentUpon>UC_PanelBanHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BanHang\UC_KhuyenMai.resx">
+      <DependentUpon>UC_KhuyenMai.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\UC_PanelBaoCao.resx">
       <DependentUpon>UC_PanelBaoCao.cs</DependentUpon>

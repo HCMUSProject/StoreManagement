@@ -51,5 +51,21 @@ namespace GUI.BanHang
                 BanHang.UC_BanHang.Instance.BringToFront();
             }
         }
+
+        private void BtnPromotion_Click(object sender, EventArgs e)
+        {
+            if (!PanelContent.Controls.Contains(BanHang.UC_KhuyenMai.Instance))
+            {
+                PanelContent.Controls.Add(BanHang.UC_KhuyenMai.Instance);
+                BanHang.UC_KhuyenMai.Instance.Dock = DockStyle.Fill;
+                BanHang.UC_KhuyenMai.Instance.BringToFront();
+            }
+            else
+            {
+                BanHang.UC_KhuyenMai.Instance.XoaDuLieu();
+                BanHang.UC_KhuyenMai.Instance.ReloadForm();
+                BanHang.UC_KhuyenMai.Instance.BringToFront();
+            }
+        }
     }
 }

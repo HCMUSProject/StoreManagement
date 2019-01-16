@@ -32,10 +32,7 @@
             this.BtnPromotion = new System.Windows.Forms.Button();
             this.BtnSellProducts = new System.Windows.Forms.Button();
             this.PanelContent = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
-            this.PanelContent.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -71,6 +68,7 @@
             this.BtnPromotion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnPromotion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnPromotion.UseVisualStyleBackColor = true;
+            this.BtnPromotion.Click += new System.EventHandler(this.BtnPromotion_Click);
             // 
             // BtnSellProducts
             // 
@@ -97,20 +95,11 @@
             // 
             // PanelContent
             // 
-            this.PanelContent.Controls.Add(this.dataGridView1);
             this.PanelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelContent.Location = new System.Drawing.Point(0, 50);
             this.PanelContent.Name = "PanelContent";
             this.PanelContent.Size = new System.Drawing.Size(1330, 770);
             this.PanelContent.TabIndex = 2;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(31, 35);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(646, 699);
-            this.dataGridView1.TabIndex = 0;
             // 
             // UC_PanelBanHang
             // 
@@ -125,8 +114,6 @@
             this.Size = new System.Drawing.Size(1330, 820);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.PanelContent.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -137,6 +124,5 @@
         private System.Windows.Forms.Button BtnSellProducts;
         private System.Windows.Forms.Panel PanelContent;
         private System.Windows.Forms.Button BtnPromotion;
-        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
