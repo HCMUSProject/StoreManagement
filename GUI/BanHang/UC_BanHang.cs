@@ -163,10 +163,10 @@ namespace GUI.BanHang
             TurnOnOffFieldsAnhButtons();
             EmptyAllFields();
 
-            dtpkDateSell.Value = DateTime.Now;
-
             // khi nhấn lập phiếu thì clear cart
             Cart.Clear();
+
+            dtpkDateSell.Value = DateTime.Now;
         }
 
         private void BtnPayment_Click(object sender, EventArgs e)

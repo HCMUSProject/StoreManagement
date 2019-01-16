@@ -31,5 +31,62 @@ namespace BUS
         {
             return dal_Statistics.DAL_GetProductsSoldByDay(Year, Month, Day, CategoryID);
         }
+
+        public DataTable BUS_GetProductSoldByOption(DateTime from, DateTime to, int CategoryID)
+        {
+            return dal_Statistics.DAL_GetProductSoldByOption(from, to, CategoryID);
+        }
+
+        public DataTable BUS_GetListProductImportByYear(int Year, int CategoryID)
+        {
+            return dal_Statistics.DAL_GetListProductImportByYear(Year, CategoryID);
+        }
+
+        public DataTable BUS_GetListProductImportByMonth(int Year, int Month, int CategoryID)
+        {
+            return dal_Statistics.DAL_GetListProductImportByMonth(Year, Month, CategoryID);
+        }
+
+        public DataTable BUS_GetListProductImportByWeek(int Year, int Week, int CategoryID)
+        {
+            return dal_Statistics.DAL_GetListProductImportByWeek(Year, Week, CategoryID);
+        }
+
+        public DataTable BUS_GetListProductImportByDate(int Year, int Month, int Day, int CategoryID)
+        {
+            return dal_Statistics.DAL_GetListProductImportByDate(Year, Month, Day, CategoryID);
+        }
+
+        public DataTable BUS_GetListProductImportByOption(DateTime from, DateTime to ,int CategoryID)
+        {
+            return dal_Statistics.DAL_GetListProductImportByOption(from, to, CategoryID);
+        }
+
+        // xuất
+
+        public DataTable BUS_GetListProductExportByYear(int Year, int CategoryID)
+        {
+            return dal_Statistics.DAL_GetListProductExportByYear(Year, CategoryID);
+        }
+
+        public DataTable BUS_GetListProductExportByMonth(int Year, int Month, int CategoryID)
+        {
+            return dal_Statistics.DAL_GetListProductExportByMonth(Year, Month, CategoryID);
+        }
+
+        public DataTable BUS_GetListProductExportByWeek(int Year, int Week, int CategoryID)
+        {
+            return dal_Statistics.DAL_GetListProductExportByWeek(Year, Week, CategoryID);
+        }
+
+        public DataTable BUS_GetListProductExportByDate(int Year, int Month, int Day, int CategoryID)
+        {
+            return dal_Statistics.DAL_GetListProductExportByDate(Year, Month, Day, CategoryID);
+        }
+
+        public DataTable BUS_GetListProductExportByOption(DateTime from, DateTime to, int CategoryID)
+        {
+            return dal_Statistics.DAL_GetListProductExportByOption(from, to, CategoryID);
+        }
     }
 }

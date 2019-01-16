@@ -87,6 +87,7 @@ namespace GUI
             }
             else
             {
+                BaoCao.UC_PanelBaoCao.Instance.ReloadForm();
                 BaoCao.UC_PanelBaoCao.Instance.BringToFront();
             }
         }

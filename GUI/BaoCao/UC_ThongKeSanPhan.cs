@@ -14,11 +14,11 @@ namespace GUI.BaoCao
 {
     public partial class UC_ThongKeSanPhan : UserControl
     {
-        private bool IsLoaded = false;
+        
         BUS_BaoCao bus_Statistics = new BUS_BaoCao();
 
-        private List<string> listStatisticsBy = new List<string> { "Năm", "Tháng", "Tuần", "Ngày" };
-
+        private List<string> listStatisticsBy = new List<string> { "Năm", "Tháng", "Tuần", "Ngày", "Tùy chọn" };
+        private bool IsLoaded = false;
         private int CurrentSelected = 0;
 
         private static UC_ThongKeSanPhan _ins;
@@ -65,6 +65,10 @@ namespace GUI.BaoCao
             IsLoaded = true;
 
             LoadListProductExpire();
+
+            PanelEnterValue_2.Visible = false;
+
+            PanelEnterValue_1.Visible = true;
         }
 
         private bool LoadComboBoxCategory()
@@ -149,24 +153,45 @@ namespace GUI.BaoCao
                         txbMonth.Enabled = false;
                         txbWeek.Enabled = false;
                         txbDay.Enabled = false;
+
+                        PanelEnterValue_2.Visible = false;
+
+                        PanelEnterValue_1.Visible=true;
                         break;
                     case 1: // tháng
                         txbYear.Enabled = true;
                         txbMonth.Enabled = true;
                         txbWeek.Enabled = false;
                         txbDay.Enabled = false;
+
+                        PanelEnterValue_2.Visible = false;
+
+                        PanelEnterValue_1.Visible = true;
                         break;
                     case 2: // tuần
                         txbYear.Enabled = true;
                         txbMonth.Enabled = false;
                         txbWeek.Enabled = true;
                         txbDay.Enabled = false;
+
+                        PanelEnterValue_2.Visible = false;
+
+                        PanelEnterValue_1.Visible = true;
                         break;
                     case 3: // ngày
                         txbYear.Enabled = true;
                         txbMonth.Enabled = true;
                         txbWeek.Enabled = false;
                         txbDay.Enabled = true;
+
+                        PanelEnterValue_2.Visible = false;
+
+                        PanelEnterValue_1.Visible = true;
+                        break;
+                    case 4:
+                        PanelEnterValue_1.Visible = false;
+
+                        PanelEnterValue_2.Visible = true;
                         break;
                 }
             }
@@ -205,6 +230,9 @@ namespace GUI.BaoCao
         {
             if (IsLoaded == true)
             {
+                dtgvProducts.DataSource = null;
+                LoadListProductExpire();
+
                 ChartBestSellingProducts.Series.Clear();
 
                 switch (CurrentSelected)
@@ -431,6 +459,40 @@ namespace GUI.BaoCao
                         }
 
                         foreach (DataRow row in dtProduct_Day.Rows)
+                        {
+                            string SeriesName = row["TENSP"].ToString();
+                            ChartBestSellingProducts.Series.Add(SeriesName);
+
+                            ChartBestSellingProducts.Series[SeriesName]["PointWidth"] = "0.5";
+
+                            int Quantity = (int)row["SOLUONG"];
+                            ChartBestSellingProducts.Series[SeriesName].Points.AddXY(SeriesName, Quantity);
+
+                        }
+
+                        ChartBestSellingProducts.AlignDataPointsByAxisLabel();
+
+                        ShowInfo_RightPanel();
+
+                        break;
+                    case 4: // tùy chọn
+                        if (dtpkFrom.Value >= dtpkTo.Value)
+                        {
+                            MessageBox.Show("Ngày bắt đầu và ngày kết thúc không trùng nhau!", "Thông báo",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        DataTable dtProduct_Option = bus_Statistics.BUS_GetProductSoldByOption(dtpkFrom.Value, dtpkTo.Value, (int)cmbCategories.SelectedValue);
+
+                        if (dtProduct_Option == null)
+                        {
+                            MessageBox.Show("Có lỗi khi load dữ liệu!", "Thông báo",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        foreach (DataRow row in dtProduct_Option.Rows)
                         {
                             string SeriesName = row["TENSP"].ToString();
                             ChartBestSellingProducts.Series.Add(SeriesName);

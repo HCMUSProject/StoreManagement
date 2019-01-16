@@ -31,6 +31,13 @@ namespace GUI.BaoCao
         public UC_PanelBaoCao()
         {
             InitializeComponent();
+
+            BtnStatisticsProfit.PerformClick();
+        }
+
+        public void ReloadForm()
+        {
+            BtnStatisticsProfit.PerformClick();
         }
 
         private void BtnStatisticsProfit_Click(object sender, EventArgs e)
@@ -43,6 +50,7 @@ namespace GUI.BaoCao
             }
             else
             {
+                BaoCao.UC_ThongKeDoanhThu.Instance.ReloadForm();
                 BaoCao.UC_ThongKeDoanhThu.Instance.BringToFront();
             }
         }
